@@ -1,7 +1,5 @@
 # My Powershell Scripts
 
-- [Change a Custom Attribute from Null to False](#L166)
-
 ## Create a new OU
 
 ```powershell
