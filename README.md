@@ -1,5 +1,13 @@
 # My Powershell Scripts
 
+# Summary
+
+1. [Create a new OU](#create-a-new-ou)
+2. [Create users in the new OU](#create-users-in-the-new-ou)
+3. [Create a new group in the new OU](#create-a-new-group-in-the-new-ou)
+4. [Add users to the group](#add-users-to-the-group)
+5. [Enumerate the group](#enumerate-the-group)
+
 ## Create a new OU
 
 ```powershell
