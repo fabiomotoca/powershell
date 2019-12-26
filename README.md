@@ -59,11 +59,15 @@ Import-Csv <file.csv> | foreach {New-ADUser -SamAccountName $_.SAMAccountName -N
 
 ## DNS - Add a Type A Record
 
+```powershell
 Add-DnsServerResourceRecordA -Name "srv1" -ZoneName "contoso.com" -IPv4Address "10.0.10.27"
+```
 
 ## DNS - Add a CNAME Record
 
+```powershell
 Add-DnsServerResourceRecordCName -Name "server2" -HostNameAlias "server2.lab.contoso.com" -ZoneName "contoso.com"
+```
 
 ## Sending Email (Using Relay)
 
