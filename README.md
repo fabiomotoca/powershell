@@ -137,6 +137,18 @@ ForEach ($item In $csv){
 
 You select the attribute using select-object before you filter using the where-object. If you don't select the attribute you can't filter it, remember that.
 
+This line will give you the enabled users on AD.
+
 ```powershell
-Get-ADUser -Filter * -SearchBase "<YOURBASEDN>" -Properties * | Select-Object EmployeeID,displayName,setGender,department,SamAccountName,mail,mobile,birthdayDate,admissionDate,whenCreated,costCenter,Enabled | Where-Object {$_.Enabled -like “true”} | Export-Csv Enabled.csv
+Get-ADUser -Filter * -SearchBase "<YOURBASEDN>" -Properties * | Select-Object EmployeeID,displayName,setGender,department,SamAccountName,mail,mobile,birthdayDate,admissionDate,whenCreated,costCenter,Enabled | Where-Object {$_.Enabled -like “true”} | Export-Csv enabled-users.csv
+```
+
+## Bulk Change Users Password on Active Directory
+
+Create a users.csv file with 01 colum; SamAccountName.
+
+Change the <NEWPASSWORD> to something you want.
+
+```powershell
+Import-Csv users.csv |  Select SamAccountName | Set-ADAccountPassword -Reset -NewPassword (ConvertTo-SecureString -AsPlainText "<NEWPASSWORD>" -Force)
 ```
