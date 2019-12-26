@@ -76,7 +76,7 @@ Send-MailMessage -From $From -to $To -Cc $Cc -Subject $Subject -Body $Body -Smtp
 
 ## Bulk Change User Password on Active Directoy
 
-Create a users.csv file with 02 columns; email and password.
+Create an users.csv file with 02 columns; email and password.
 
 ```powershell
 Import-Module ActiveDirectory 
@@ -101,5 +101,34 @@ ForEach ($item In $csv) {
         $changelog = "The password for USER $($user_email) was set."
         Write-Host $changelog
         $changelog | Out-File -Append .\changelog.txt
+}
+```
+
+## Bulk Change User Email and Add the Old Email as an Alias
+
+Create an users.csv file with 03 columns; SamAccountName, NewEmail, Alias.
+
+```powershell
+Import-Module ActiveDirectory
+
+$csv = Import-Csv -Path .\users.csv
+
+ForEach ($item In $csv){
+
+        # Get a line from csv file
+        $sam_account = $item.SamAccountName
+        $new_email = $item.NewEmail
+        $alias = $item.Alias
+
+        # Set attributes
+        Set-ADUser -Identity $sam_account -EmailAddress $new_email
+        Set-ADUser -Identity $sam_account -Add @{proxyAddresses=$alias}
+
+        # Success, write to a log
+        $changelog = "The USER $($sam_account) was set from $($alias) to $($new_email)"
+        Write-Host $changelog
+        $changelog | Out-File -Append .\changelog.txt
+
+        Start-Sleep -Seconds 1.0
 }
 ```
