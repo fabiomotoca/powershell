@@ -106,7 +106,7 @@ ForEach ($item In $csv) {
 
 ## Bulk Change User Email and Add the Old Email as an Alias
 
-Create an users.csv file with 03 columns; SamAccountName, NewEmail, Alias.
+Create an users.csv file with 03 columns; SamAccountName, NewEmail, Alias. This file is optional, but you will need to change the script a bit.
 
 ```powershell
 Import-Module ActiveDirectory
@@ -131,4 +131,12 @@ ForEach ($item In $csv){
 
         Start-Sleep -Seconds 1.0
 }
+```
+
+## Generate a CSV File From Users on Active Directory Filtering Attributes
+
+You select the attribute using select-object before you filter using the where-object. If you don't select the attribute you can't filter it, remember that.
+
+```powershell
+Get-ADUser -Filter * -SearchBase "<YOURBASEDN>" -Properties * | Select-Object EmployeeID,displayName,setGender,department,SamAccountName,mail,mobile,birthdayDate,admissionDate,whenCreated,costCenter,Enabled | Where-Object {$_.Enabled -like “true”} | Export-Csv Enabled.csv
 ```
