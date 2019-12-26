@@ -159,7 +159,7 @@ You select the attribute using select-object before you filter using the where-o
 This line will give you the enabled users on AD.
 
 ```powershell
-Get-ADUser -Filter * -SearchBase "<YOURBASEDN>" -Properties * | Select-Object EmployeeID,displayName,setGender,department,SamAccountName,mail,mobile,birthdayDate,admissionDate,whenCreated,costCenter,Enabled | Where-Object {$_.Enabled -like “true”} | Export-Csv enabled-users.csv
+Get-ADUser -Filter * -SearchBase "YOURBASEDN" -Properties * | Select-Object EmployeeID,displayName,setGender,department,SamAccountName,mail,mobile,birthdayDate,admissionDate,whenCreated,costCenter,Enabled | Where-Object {$_.Enabled -like “true”} | Export-Csv enabled-users.csv
 ```
 
 ## Bulk Change Users Password on Active Directory
