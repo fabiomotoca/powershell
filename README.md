@@ -1,6 +1,6 @@
 # My Powershell Scripts
 
-1. [Change a Custom Attribute from Null to False](#change_custom_attribute)
+- [Change a Custom Attribute from Null to False](#L166)
 
 ## Create a new OU
 
@@ -163,7 +163,7 @@ Change <YOURBASEDN>, *EX-EMPLOYEES*, *SERVICE ACCOUNT* and *EXTERNAL*.
 Get-ADUser -Filter * -SearchBase "<YOURBASEDN>" -Properties * | Where-Object {$_.DistinguishedName -like '*EX-EMPLOYEES*' -or $_.DistinguishedName -like '*SERVICE ACCOUNT*' -or $_.DistinguishedName -like '*EXTERNAL*'} | Select DistinguishedName,SamAccountName
 ```
 
-(#change_custom_attribute) ## Change a Custom Attribute from Null to False
+## Change a Custom Attribute from Null to False
 
 Change <YOURBASEDN>, *EX-EMPLOYEES*, *SERVICE ACCOUNT* and *EXTERNAL*.
 
