@@ -163,33 +163,33 @@ You select the attribute using select-object before you filter using the where-o
 This line will give you the enabled users on AD.
 
 ```powershell
-Get-ADUser -Filter * -SearchBase "<YOURBASEDN>" -Properties * | Select-Object EmployeeID,displayName,setGender,department,SamAccountName,mail,mobile,birthdayDate,admissionDate,whenCreated,costCenter,Enabled | Where-Object {$_.Enabled -like “true”} | Export-Csv enabled-users.csv
+Get-ADUser -Filter * -SearchBase "YOURBASEDN" -Properties * | Select-Object EmployeeID,displayName,setGender,department,SamAccountName,mail,mobile,birthdayDate,admissionDate,whenCreated,costCenter,Enabled | Where-Object {$_.Enabled -like “true”} | Export-Csv enabled-users.csv
 ```
 
 ## Bulk Change Users Password on Active Directory
 
 Create a users.csv file with 01 column; SamAccountName.
 
-Change the <NEWPASSWORD> to something you want.
+Change the NEWPASSWORD to something you want.
 
 ```powershell
-Import-Csv users.csv |  Select SamAccountName | Set-ADAccountPassword -Reset -NewPassword (ConvertTo-SecureString -AsPlainText "<NEWPASSWORD>" -Force)
+Import-Csv users.csv |  Select SamAccountName | Set-ADAccountPassword -Reset -NewPassword (ConvertTo-SecureString -AsPlainText "NEWPASSWORD" -Force)
 ```
 
 ## List Users on More Than One OU on Active Directory
 
-Change <YOURBASEDN>, *EX-EMPLOYEES*, *SERVICE ACCOUNT* and *EXTERNAL*.
+Change YOURBASEDN, *EX-EMPLOYEES*, *SERVICE ACCOUNT* and *EXTERNAL*.
 
 ```powershell
-Get-ADUser -Filter * -SearchBase "<YOURBASEDN>" -Properties * | Where-Object {$_.DistinguishedName -like '*EX-EMPLOYEES*' -or $_.DistinguishedName -like '*SERVICE ACCOUNT*' -or $_.DistinguishedName -like '*EXTERNAL*'} | Select DistinguishedName,SamAccountName
+Get-ADUser -Filter * -SearchBase "YOURBASEDN" -Properties * | Where-Object {$_.DistinguishedName -like '*EX-EMPLOYEES*' -or $_.DistinguishedName -like '*SERVICE ACCOUNT*' -or $_.DistinguishedName -like '*EXTERNAL*'} | Select DistinguishedName,SamAccountName
 ```
 
 ## Change a Custom Attribute from Null to False
 
-Change <YOURBASEDN>, *EX-EMPLOYEES*, *SERVICE ACCOUNT* and *EXTERNAL*.
+Change YOURBASEDN, *EX-EMPLOYEES*, *SERVICE ACCOUNT* and *EXTERNAL*.
 
 The custom attribute in this case is called "alive".
 
 ```powershell
-Get-ADUser -Filter * -SearchBase "<YOURBASEDN>" -Properties * | Where-Object {$_.DistinguishedName -like '*EX-EMPLOYEES*' -or $_.DistinguishedName -like '*SERVICE ACCOUNT*' -or $_.DistinguishedName -like '*EXTERNAL*'} | Select DistinguishedName,SamAccountName,alive | Where-Object {$_.alive -eq $null} | ForEach {Set-ADUser $_.SamAccountName -Replace @{alive=$false}}
+Get-ADUser -Filter * -SearchBase "YOURBASEDN" -Properties * | Where-Object {$_.DistinguishedName -like '*EX-EMPLOYEES*' -or $_.DistinguishedName -like '*SERVICE ACCOUNT*' -or $_.DistinguishedName -like '*EXTERNAL*'} | Select DistinguishedName,SamAccountName,alive | Where-Object {$_.alive -eq $null} | ForEach {Set-ADUser $_.SamAccountName -Replace @{alive=$false}}
 ```
