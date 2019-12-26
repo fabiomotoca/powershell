@@ -7,6 +7,17 @@
 3. [Create a new group in the new OU](#create-a-new-group-in-the-new-ou)
 4. [Add users to the group](#add-users-to-the-group)
 5. [Enumerate the group](#enumerate-the-group)
+6. [Import users from a CSV](#import-users-from-a-csv)
+7. [DNS - Add a Type A Record](#dns---add-a-type-a-record)
+8. [DNS - Add a CNAME Record](##dns---add-a-cname-record)
+9. [Sending Email (Using Relay)](#sending-email-using-relay)
+10. [Sending Email(Username + Password)](#sending-email-username--password)
+11. [Bulk Change User Password on Active Directory](#bulk-change-user-password-on-active-directoy)
+12. [Bulk Change User Eamil and Add the Old Email as an Alias](#bulk-change-user-email-and-add-the-old-email-as-an-alias)
+13. [Generate a CSV File From users on Active Directory Filtering Attributes](#generate-a-csv-file-from-users-on-active-directory-filtering-attributes)
+14. [Bulk Change Users Password on Active Directory](#bulk-change-users-password-on-active-directory)
+15. [List Users on More Than One OU Active Directory](#list-users-on-more-than-one-ou-on-active-directory)
+16. [Change a Custom Attribute from Null to False](#change-a-custom-attribute-from-null-to-false)
 
 ## Create a new OU
 
