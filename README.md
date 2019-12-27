@@ -18,6 +18,7 @@
 14. [Bulk Change Users Password on Active Directory](#bulk-change-users-password-on-active-directory)
 15. [List Users on More Than One OU Active Directory](#list-users-on-more-than-one-ou-on-active-directory)
 16. [Change a Custom Attribute from Null to False](#change-a-custom-attribute-from-null-to-false)
+17. [Search for specific files on the network](#search-for-specific-files-on-the-network)
 
 ## Create a new OU
 
